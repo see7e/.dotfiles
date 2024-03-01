@@ -1,0 +1,7 @@
+~/.bashrc
+~/.bash_profile
+~/.zshrc
+~/.vimrc
+~/.gitconfig
+~/.ssh/config
+~/.tmux.conf
