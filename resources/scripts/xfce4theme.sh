@@ -2,6 +2,7 @@
 
 # Resources location
 RESOURCES= "$1"
+cd $RESOURCES # just to be sure
 
 # manual steps?
 # Desktop settings > Icons > Icon type: None

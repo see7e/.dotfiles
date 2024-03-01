@@ -16,6 +16,7 @@ fi
 # echo ".git" > .stow-local-ignore
 # echo ".gitignore" > .stow-local-ignore
 echo "install.sh" > .stow-local-ignore
+echo "$RESOURCES/*.bak" > .stow-local-ignore
 echo "$RESOURCES/.vscode" > .stow-local-ignore # gonna leave this here just for now
 echo "$RESOURCES/.dotlist.txt" > .stow-local-ignore
 echo "$RESOURCES/scripts/" > .stow-local-ignore

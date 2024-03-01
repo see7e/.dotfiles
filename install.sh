@@ -3,7 +3,8 @@
 # fetch the user name
 USER=$(whoami)
 INSTALLER_PATH="$(realpath "${BASH_SOURCE[0]}")"
-RESOURCE_PATH="$(dirname "$INSTALLER_PATH")/resources"
+RESOURCE_PATH="$INSTALLER_PATH/resources"
+SCRIPTS_PATH="$RESOURCE_PATH/scripts"
 
 function ask() {
     read -p "$1 (Y/n): " resp
@@ -24,7 +25,7 @@ function ask() {
 @sudo apt install git curl rsync -y
 
 if ask "Install xfce theme packages? (Y/n)"; then
-    source "$INSTALLER_PATH/xfce4theme.sh" "$RESOURCE_PATH/theme"
+    source "$SCRIPTS_PATH/xfce4theme.sh" "$RESOURCE_PATH/theme"
     exit_code=$?  # Capture the exit code of the sourced script
     if [ $exit_code -ne 0 ]; then
         echo "xfce4theme.sh script exited with non-zero status code: $exit_code"
@@ -35,7 +36,7 @@ fi
 
 
 if ask "'Install' the dotfiles? (Y/n)"; then
-    source "$INSTALLER_PATH/dotfiles.sh" $RESOURCE_PATH
+    source "$SCRIPTS_PATH/dotfiles.sh" $RESOURCE_PATH
     exit_code=$?  # Capture the exit code of the sourced script
     if [ $exit_code -ne 0 ]; then
         echo "We had some problem with the dotfiles.sh script: $exit_code"
