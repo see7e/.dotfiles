@@ -2,3 +2,11 @@
 - [x] fix/improve scripts
 - [ ] configure the dotfiles
     - `.bashrc`
+- [ ] install/configure cli tools
+    - alacritty / tmux
+    - neovim
+    - tree
+    - lsp
+    - telescope
+    - harpoon
+    - fugitive

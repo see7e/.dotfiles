@@ -6,7 +6,7 @@ route_to_prog_stud() {
         cd /mnt/g/O\ meu\ disco/DRIVE/GAB/Estudos-Trabalhos/PROGRAMAÇÃO/programming-studies/
     else
         echo "Second dict not found. Trying looking in home directory..."
-        cd $HOME/programming-studies/
+        cd $HOME/Documentos/programming-studies/
     fi
 }
 alias programming-studies='route_to_prog_stud'
