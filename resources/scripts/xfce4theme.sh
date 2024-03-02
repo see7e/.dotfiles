@@ -1,13 +1,16 @@
 #!/usr/bin/env bash
 
-# Resources location
-RESOURCES= "$1"
-cd $RESOURCES # just to be sure
+THEME_RESOURCES="$1" # Resources location
+cd $THEME_RESOURCES # just to be sure
 
-# manual steps?
+# Backups
+TIMESTAMP=$(date +%s)
+BACKUP="../../backups/$TIMESTAMP"
+mkdir $BACKUP
+
+# manual steps? got covered in the resource files
 # Desktop settings > Icons > Icon type: None
 # Window Manager > Placement > At the center of the screen
-# Window Manager > Compositor > Show shadows under popup windows
 
 git clone https://github.com/viceliuice/Orchis-theme.git
 ./Orchis-theme/install.sh
@@ -16,7 +19,7 @@ git clone https://github.com/viceliuice/Tela-icon-theme.git
 ./Tela-icon-theme/install.sh
 
 # fonts-pack.zip - Fonts
-unzip .fonts-pack.zip
+unzip .fonts-pack.zip -d fonts-pack
 rsync -av fonts-pack/.local ~
 if [ ! -e ~/.local/share/fonts ]; then
     echo "Failed to install fonts-pack.zip"
@@ -24,17 +27,18 @@ if [ ! -e ~/.local/share/fonts ]; then
 fi
 
 # Wallpappers
-unzip /alt-wallpappers.zip
+unzip /alt-wallpappers.zip -d alt-wallpappers
 sudo rsync -av alt-wallpappers/usr /usr/share/backgrounds
-# TODO: add check for the files later
 
 # xfce-config.zip - Xfce Desktop Environment
 xfce4-panel --quit && pkill xconfd
-mv ~/.config/xfce4 ~/.config/xfce4-default # create a backup
-unzip xfce-config.zip
-rsync -av xfce-config/ $HOME
+mv ~/.config/xfce4 $BACKUP # create a backup
+rsync -av xfce4/ $HOME
 
 ## Genmon -> Comand=/home/<user>/.genmon-plugin/cpu-panel.sh
+unzip .genmon-plugin.zip -d genmon-plugin
+rsync -av genmon-plugin $HOME
+
 file_paths=(
     "$HOME/.config/xfce4/panel/genmon-3.rc"
     "$HOME/.config/xfce4/panel/genmon-6.rc"
@@ -94,4 +98,24 @@ fi
 new_line=$(echo "$old_line" | sed "s/\/home\/<user>/\/home\/$USER/")
 sed -i "s/$old_line/$new_line/" "$file_path"
 
+@echo "----------------------------------------"
+
+# Loop to check if every path in the txt file exists
+non_existing_paths="" # Initialize a variable to store non-existing paths
+while IFS= read -r path; do
+    if [ ! -e "$path" ]; then
+        non_existing_paths+="$path\n"  # Append the non-existing path to the list
+    fi
+done < "$THEME_RESOURCES/xfcelist.txt"
+# Echo the non-existing paths
+if [ -n "$non_existing_paths" ]; then
+    echo "The following paths do not exist:"
+    echo -e "$non_existing_paths"
+    exit 1
+else
+    echo "All dotfiles (links) created."
+fi
+
 xfce4-panel &
+
+@echo "========================================"

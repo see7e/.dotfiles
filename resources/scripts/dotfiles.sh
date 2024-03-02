@@ -1,7 +1,13 @@
 # #!/usr/bin/env bash
 
-cd $HOME/dotfiles # just to be sure
-RESOURCES= "$1" # Resources location
+RESOURCES="$1" # Resources location
+cd $RESOURCES # just to be sure
+
+# Backups
+TIMESTAMP=$(date +%s)
+BACKUP="../backups/$TIMESTAMP"
+mkdir $BACKUP
+mv $SH_PATH "$BACKUP/$SH"
 
 # Check what shell is being used
 SH=".bashrc"
@@ -22,12 +28,6 @@ echo "$RESOURCES/.dotlist.txt" > .stow-local-ignore
 echo "$RESOURCES/scripts/" > .stow-local-ignore
 echo "$RESOURCES/theme" > .stow-local-ignore
 
-# Backups
-TIMESTAMP=$(date +%s)
-
-mkdir "backups/$TIMESTAMP"
-mv $SH_PATH "backups/$TIMESTAMP/$SH"
-
 # # alacritty
 # if [ -f ~/.config/alacritty.tom ]; then
 #     cp -r ~/.config/alacritty .config
@@ -38,6 +38,8 @@ mv $SH_PATH "backups/$TIMESTAMP/$SH"
 git pull # in the moment i'm using "static" files, so it only requires a pull
 
 stow .
+
+@echo "----------------------------------------"
 
 # Loop to check if every path in the txt file exists
 non_existing_paths="" # Initialize a variable to store non-existing paths
@@ -55,4 +57,4 @@ else
     echo "All dotfiles (links) created."
 fi
 
-@echo "----------------------------------------"
+@echo "========================================"

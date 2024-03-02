@@ -45,9 +45,9 @@ if ask "'Install' the dotfiles? (Y/n)"; then
     fi
 fi
 
-@echo "----------------------------------------------------------------------"
+@echo "======================================================================"
 @echo "All done! Note that some changes may require a reload of the session"
 @echo "to persist. The script will try to automatically do that for you!"
 @echo "If it doesn't, please do it manually. Enjoy your new setup! :)"
-@echo "----------------------------------------------------------------------"
+@echo "======================================================================"
 pkill -u $USER

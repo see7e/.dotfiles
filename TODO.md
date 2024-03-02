@@ -1,0 +1,4 @@
+- [x] add/update theme resource files
+- [x] fix/improve scripts
+- [ ] configure the dotfiles
+    - `.bashrc`
