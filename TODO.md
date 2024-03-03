@@ -4,15 +4,11 @@
     - [x] `.bashrc`
     - [x] `.bash_aliases`
     - [ ] `xfwm4.xml`
-- [ ] install/configure cli tools
+- [ ] install/configure
     - [ ] alacritty
     - [ ] tmux
-    - [ ] neovim
+    - [ ] neovim and plugins (treesitter, telescope, harpoon, fugitive, lsp, ...) [init.lua](https://github.com/ThePrimeagen/init.lua)
     - [ ] tree
-    - [ ] lsp
-    - [ ] telescope
-    - [ ] harpoon
-    - [ ] fugitive
 - [ ] fix `instal.sh`
     ```bash
     -bash: $'\r': command not found
