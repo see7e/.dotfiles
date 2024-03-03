@@ -18,7 +18,7 @@ if [ -f "${HOME}/.zshrc" ]; then
 fi
 
 # Check for Stow
-@apt get install stow
+@sudo apt install stow
 # echo ".git" > .stow-local-ignore
 # echo ".gitignore" > .stow-local-ignore
 echo "install.sh" > .stow-local-ignore
