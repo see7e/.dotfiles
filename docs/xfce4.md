@@ -6,6 +6,7 @@
 
 - `genmon-*.rc`
     Responsible for the configuration of the genmon plugin, which is used to display the system information (cpu, memory, ...).
+    The reading time is set to 30sec, if you use an actual PC and not a potato as me, update the configuration files
 
 - `launcher-2/16955526721.desktop`
     Responsible for the configuration of the launcher plugin, which is used to display the applications.
