@@ -1,12 +1,15 @@
 - [x] add/update theme resource files
 - [x] fix/improve scripts
 - [ ] configure the dotfiles
-    - `.bashrc`
+    - [x] `.bashrc`
+    - [x] `.bash_aliases`
+    - [ ] `xfwm4.xml`
 - [ ] install/configure cli tools
-    - alacritty / tmux
-    - neovim
-    - tree
-    - lsp
-    - telescope
-    - harpoon
-    - fugitive
+    - [ ] alacritty
+    - [ ] tmux
+    - [ ] neovim
+    - [ ] tree
+    - [ ] lsp
+    - [ ] telescope
+    - [ ] harpoon
+    - [ ] fugitive
