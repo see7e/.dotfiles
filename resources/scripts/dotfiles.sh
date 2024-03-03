@@ -17,16 +17,19 @@ if [ -f "${HOME}/.zshrc" ]; then
     SH_PATH="${HOME}/${SH}"
 fi
 
-# Check for Stow
+# Stow
+STOW_PATH="../.stow-local-ignore"
 @sudo apt install stow
-# echo ".git" > .stow-local-ignore
-# echo ".gitignore" > .stow-local-ignore
-echo "install.sh" > .stow-local-ignore
-echo "$RESOURCES/*.bak" > .stow-local-ignore
-echo "$RESOURCES/.vscode" > .stow-local-ignore # gonna leave this here just for now
-echo "$RESOURCES/.dotlist.txt" > .stow-local-ignore
-echo "$RESOURCES/scripts/" > .stow-local-ignore
-echo "$RESOURCES/theme" > .stow-local-ignore
+# echo ".git" > $STOW_PATH
+# echo ".gitignore" > $STOW_PATH
+echo "./install.sh" > $STOW_PATH
+echo "./TODO.md" > $STOW_PATH
+echo "$RESOURCES/.dotlist.txt"
+echo "$RESOURCES/.vscode" > $STOW_PATH # gonna leave this here just for now
+echo "$RESOURCES/.dotlist.txt" $STOW_PATH
+echo "$RESOURCES/backups" > $STOW_PATH # backups
+echo "$RESOURCES/scripts/" > $STOW_PATH
+echo "$RESOURCES/theme" > $STOW_PATH
 
 # # alacritty
 # if [ -f ~/.config/alacritty.tom ]; then

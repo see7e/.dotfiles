@@ -13,3 +13,10 @@
     - [ ] telescope
     - [ ] harpoon
     - [ ] fugitive
+- [ ] fix `instal.sh`
+    ```bash
+    -bash: $'\r': command not found
+    -bash: $'\r': command not found
+    -bash: install.sh: line 9: sybtax error near unexpected token `$'{\r''
+    -bash: install.sh: line 9:`function ask() {
+    ```

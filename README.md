@@ -3,7 +3,7 @@
 Run the install file and it wil guide you through the installation process.
 
 ```bash
-./install
+source install
 ```
 
 ---
