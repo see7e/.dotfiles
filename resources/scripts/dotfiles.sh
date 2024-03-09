@@ -1,4 +1,4 @@
-# #!/usr/bin/env bash
+#!/usr/bin/env bash
 
 RESOURCES="$1" # Resources location
 cd $RESOURCES # just to be sure
@@ -7,7 +7,8 @@ cd $RESOURCES # just to be sure
 TIMESTAMP=$(date +%s)
 BACKUP="../backups/$TIMESTAMP"
 mkdir $BACKUP
-mv $SH_PATH "$BACKUP/$SH"
+# TODO: move the files listed in the 'dotlist' to the backup folder
+# mv $SH_PATH "$BACKUP/$SH"
 
 # Check what shell is being used
 SH=".bashrc"
