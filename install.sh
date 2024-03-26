@@ -26,22 +26,24 @@ function ask() {
 
 if ask "Install xfce theme packages? (Y/n)"; then
     source "$SCRIPTS_PATH/xfce4theme.sh" "$RESOURCE_PATH/theme"
-    exit_code=$?  # Capture the exit code of the sourced script
-    if [ $exit_code -ne 0 ]; then
-        echo "xfce4theme.sh script exited with non-zero status code: $exit_code"
+    theme_exit=$?  # Capture the exit code of the sourced script
+    if [ $theme_exit -ne 0 ]; then
+        echo "xfce4theme.sh script exited with non-zero status code: $theme_exit"
         # Handle the error or exit gracefully
-        exit $exit_code  # Optionally exit the main script with the same exit code
+        exit $theme_exit  # Optionally exit the main script with the same exit code
     fi
 fi
+
+# Program installation
 
 
 if ask "'Install' the dotfiles? (Y/n)"; then
     source "$SCRIPTS_PATH/dotfiles.sh" $RESOURCE_PATH
-    exit_code=$?  # Capture the exit code of the sourced script
-    if [ $exit_code -ne 0 ]; then
-        echo "We had some problem with the dotfiles.sh script: $exit_code"
+    dotfiles_exit=$?  # Capture the exit code of the sourced script
+    if [ $dotfiles_exit -ne 0 ]; then
+        echo "We had some problem with the dotfiles.sh script: $dotfiles_exit"
         # Handle the error or exit gracefully
-        exit $exit_code  # Optionally exit the main script with the same exit code
+        exit $dotfiles_exit  # Optionally exit the main script with the same exit code
     fi
 fi
 
@@ -50,4 +52,7 @@ fi
 @echo "to persist. The script will try to automatically do that for you!"
 @echo "If it doesn't, please do it manually. Enjoy your new setup! :)"
 @echo "======================================================================"
-pkill -u $USER
+if [ $theme_exit -eq 0 ]; then
+    @echo "To apply the new theme, this script will atempt to log you out."
+    pkill -u $USER
+fi
