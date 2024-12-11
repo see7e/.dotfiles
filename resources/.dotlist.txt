@@ -1,0 +1,8 @@
+$HOME/.bashrc
+$HOME/.bash_aliases
+$HOME/.bash_profile
+$HOME/.zshrc
+$HOME/.vimrc
+$HOME/.gitconfig
+$HOME/.ssh/config
+$HOME/.tmux.conf

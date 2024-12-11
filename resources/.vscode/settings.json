@@ -1,0 +1,76 @@
+{
+    "security.workspace.trust.untrustedFiles": "open",
+
+    "window.menuBarVisibility": "compact",
+
+    "workbench.startupEditor": "none",
+    "workbench.colorTheme": "GitHub Dark Default",
+    "workbench.activityBar.location": "hidden",
+    "workbench.editor.highlightModifiedTabs": true,
+    "workbench.editor.labelFormat": "short",
+    "workbench.layoutControl.enabled": false,
+
+    "explorer.confirmDelete": false,
+    "explorer.confirmDragAndDrop": false,
+    "explorer.compactFolders": false,
+    // "explorer.fileNesting.enabled": true,
+    // "explorer.fileNesting.patterns": {
+    //     "*.ts": "${capture}.js",
+    //     "*.js": "${capture}.js.map, ${capture}.min.js, ${capture}.d.ts",
+    //     "*.jsx": "${capture}.js",
+    //     "*.tsx": "${capture}.ts",
+    //     "tsconfig.json": "tsconfig.*.json",
+    //     "package.json": "package-lock.json, yarn.lock, pnpm-lock.yaml"
+    // },
+    
+    "editor.minimap.enabled": false,
+    // "editor.minimap.autohide": true,
+    // "editor.minimap.maxColumn": 100,
+    "editor.scrollbar.horizontal": "hidden",
+    "editor.scrollbar.vertical": "hidden",
+    "editor.stickyScroll.enabled": false,
+    "editor.rulers": [
+        120
+    ],
+    
+    "git.autofetch": true,
+    
+    "git-graph.repository.commits.order": "topo",
+    "git-graph.commitDetailsView.location": "Docked to Bottom",
+    "git-graph.referenceLabels.alignment": "Branches (aligned to the graph) & Tags (on the right)",
+    
+    "gitlens.codeLens.enabled": false,
+    "gitlens.hovers.currentLine.over": "line",
+    "gitlens.defaultDateLocale": null,
+    "git.enableSmartCommit": true,
+    "git.ignoreRebaseWarning": true,
+    
+    "github.copilot.enable": {
+        "*": true,
+        "plaintext": false,
+        "markdown": true,
+        "scminput": false
+    },
+    
+    "symbols.hidesExplorerArrows": false,
+    
+    // "codestream.serverUrl": "https://eu-api.codestream.com",
+    
+    "[python]": {
+        "editor.formatOnType": true,
+        "editor.rulers": [100]
+    },
+    
+    "[c]": {
+        "editor.formatOnType": true,
+        "editor.rulers": [80]
+    },
+
+    "go.inferGopath": true,
+    "go.alternateTools": {},
+    
+    "files.autoSave": "onFocusChange",
+    "diffEditor.ignoreTrimWhitespace": false,
+    "remote.autoForwardPortsSource": "hybrid",
+    "python.radon.enable": true,
+}
