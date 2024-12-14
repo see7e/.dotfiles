@@ -42,7 +42,8 @@ wget -P ~/.local/share/fonts https://github.com/ryanoasis/nerd-fonts/releases/do
 # fi
 
 # Install apps
-sudo apt install fzf fd-find bat eza tmux neovim -y
+sudo apt install fzf fd-find bat eza tmux -y
+git clone https://github.com/NVChad/NVChad ~/.config/nvim --depth=1
 # sudo apt install yazi -y
 
 # Configure Tmux

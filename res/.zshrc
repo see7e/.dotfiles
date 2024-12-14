@@ -1,5 +1,6 @@
 # Auto-configurations from P10K
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
@@ -29,6 +30,7 @@ fi
 # Source/Load zinit
 source "${ZINIT_HOME}/zinit.zsh"
 
+
 # Plugins
 ## Add in Powerlevel10k
 zinit ice depth=1; zinit light romkatv/powerlevel10k
@@ -36,6 +38,13 @@ zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
 zinit light Aloxaf/fzf-tab
+# zoxide
+zinit ice wait"2" as"command" from"gh-r" lucid \
+  mv"zoxide*/zoxide -> zoxide" \
+  atclone"./zoxide init zsh > init.zsh" \
+  atpull"%atclone" src"init.zsh" nocompile'!'
+zinit light ajeetdsouza/zoxide
+
 
 # Plugin Configurations
 ## Load completions
@@ -43,6 +52,7 @@ autoload -Uz compinit && compinit
 bindkey '^f' autosuggest-accept
 bindkey '^p' history-search-backward
 bindkey '^n' history-search-forward
+
 
 # Other configurations
 ## History
@@ -67,9 +77,9 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 eval "$(fzf)"
 eval "$(zoxide init --cmd cd zsh)"
 ## Fzf
-export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git "
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
+# export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git "
+# export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+# export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
 export FZF_DEFAULT_OPTS="--height 50% --layout=default --border --color=hl:#2dd4bf"
 ## Setup fzf previews
 export FZF_CTRL_T_OPTS="--preview 'bat --color=always -n --line-range :500 {}'"
@@ -89,6 +99,8 @@ zinit snippet OMZP::kubectx
 zinit snippet OMZP::command-not-found
 alias c=clear
 alias ls="eza --all --no-filesize --long --color=always --icons=always --no-user"
+alias vim=nvim # just for the muscle memory
+alias nv=nvim
 
 ### Don't modify below
 
