@@ -1,10 +1,9 @@
-#!/usr/bin/env bash
-
 # fetch the user name
 USER=$(whoami)
 INSTALLER_PATH="$(realpath "${BASH_SOURCE[0]}")"
-RESOURCE_PATH="$INSTALLER_PATH/resources"
-SCRIPTS_PATH="$RESOURCE_PATH/scripts"
+SCRIPTS_PATH="$INSTALLER_PATH/scripts"
+RESOURCE_PATH="$INSTALLER_PATH/res"
+PACKAGE_PATH="$INSTALLER_PATH/pkg"
 
 function ask() {
     read -p "$1 (Y/n): " resp
@@ -18,34 +17,46 @@ function ask() {
 }
 
 # greetings
-@echo "Hello, $USER! this script will configure your XFCE DE, alongside with the dotfiles configurations."
+# @echo "Hello, $USER! this script will configure your XFCE DE, alongside with the dotfiles configurations."
 
 @echo "Checking for required packages..."
 @sudo apt update && @sudo apt upgrade -y
-@sudo apt install git curl rsync -y
+@sudo apt install git curl rsync tree -y
 
-if ask "Install xfce theme packages? (Y/n)"; then
-    source "$SCRIPTS_PATH/xfce4theme.sh" "$RESOURCE_PATH/theme"
-    theme_exit=$?  # Capture the exit code of the sourced script
-    if [ $theme_exit -ne 0 ]; then
-        echo "xfce4theme.sh script exited with non-zero status code: $theme_exit"
-        # Handle the error or exit gracefully
-        exit $theme_exit  # Optionally exit the main script with the same exit code
-    fi
-fi
+# Installing the fonts
+wget -P ~/.local/share/fonts https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/JetBrainsMono.zip \
+&& cd ~/.local/share/fonts \
+&& unzip JetBrainsMono.zip \
+&& rm JetBrainsMono.zip \
+&& fc-cache -fv
 
 # Program installation
+# if ask "'Install' the dotfiles? (Y/n)"; then
+#     source "$SCRIPTS_PATH/dotfiles.sh" $RESOURCE_PATH
+#     dotfiles_exit=$?  # Capture the exit code of the sourced script
+#     if [ $dotfiles_exit -ne 0 ]; then
+#         echo "We had some problem with the dotfiles.sh script: $dotfiles_exit"
+#         # Handle the error or exit gracefully
+#         exit $dotfiles_exit  # Optionally exit the main script with the same exit code
+#     fi
+# fi
+
+# Install apps
+sudo apt install fzf fd-find bat eza tmux neovim -y
+# sudo apt install yazi -y
+
+# Configure Tmux
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 
-if ask "'Install' the dotfiles? (Y/n)"; then
-    source "$SCRIPTS_PATH/dotfiles.sh" $RESOURCE_PATH
-    dotfiles_exit=$?  # Capture the exit code of the sourced script
-    if [ $dotfiles_exit -ne 0 ]; then
-        echo "We had some problem with the dotfiles.sh script: $dotfiles_exit"
-        # Handle the error or exit gracefully
-        exit $dotfiles_exit  # Optionally exit the main script with the same exit code
-    fi
-fi
+# Copy the files (replace later with Stow)
+rm ~/.zshrc
+cp $RESOURCE_PATH/.zshrc ~/.zshrc
+cp $RESOURCE_PATH/.config ~/.config
+
+# Install zsh
+sudo apt install zsh -y
+chsh $USER
 
 @echo "======================================================================"
 @echo "All done! Note that some changes may require a reload of the session"
