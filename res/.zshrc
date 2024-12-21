@@ -17,6 +17,19 @@ export TMUX_CONF=~/.config/tmux/tmux.conf
 # export PATH=$GOPATH/bin:$PATH
 # export PATH=$PATH:$(go env GOPATH)/bin
 
+# GDrive
+GDRIVEDIR=/mnt/g
+if [ ! -d "$GDRIVEDIR" ]; then
+  echo "$GDRIVEDIR does not exist, creating folder"
+  sudo mkdir /mnt/g
+fi
+if mountpoint -q $GDRIVEDIR; then
+  echo "$GDRIVEDIR is mounted"
+else
+  sudo mount -t drvfs G: $GDRIVEDIR
+fi
+
+
 # ZSH Plugin Manager
 # Set the directory we want to store zinit and plugins
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
@@ -101,6 +114,11 @@ alias c=clear
 alias ls="eza --all --no-filesize --long --color=always --icons=always --no-user"
 alias vim=nvim # just for the muscle memory
 alias nv=nvim
+
+alias obsidian='cd "$GDRIVEDIR/O meu disco/DRIVE/GAB"'
+alias programming='cd "$GDRIVEDIR/O meu disco/DRIVE/GAB/Estudos-Trabalhos/PROGRAMAÇÃO"'
+alias studies='cd "$GDRIVEDIR/O meu disco/DRIVE/GAB/Estudos-Trabalhos/PROGRAMAÇÃO/programming-studies"'
+
 
 ### Don't modify below
 
