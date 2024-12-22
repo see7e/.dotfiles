@@ -51,12 +51,13 @@ zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
 zinit light Aloxaf/fzf-tab
-# zoxide
+## zoxide
 zinit ice wait"2" as"command" from"gh-r" lucid \
   mv"zoxide*/zoxide -> zoxide" \
   atclone"./zoxide init zsh > init.zsh" \
   atpull"%atclone" src"init.zsh" nocompile'!'
 zinit light ajeetdsouza/zoxide
+eval "$(zoxide init zsh)"
 
 
 # Plugin Configurations
@@ -98,7 +99,7 @@ export FZF_DEFAULT_OPTS="--height 50% --layout=default --border --color=hl:#2dd4
 export FZF_CTRL_T_OPTS="--preview 'bat --color=always -n --line-range :500 {}'"
 export FZF_ALT_C_OPTS="--preview 'eza --icons=always --tree --color=always {} | head -200'"
 ## fzf preview for tmux
-export FZF_TMUX_OPTS=" -p90%,70% "  
+export FZF_TMUX_OPTS=" -p90%,70% "
 
 
 # Aliases and Snipppets
@@ -115,9 +116,9 @@ alias ls="eza --all --no-filesize --long --color=always --icons=always --no-user
 alias vim=nvim # just for the muscle memory
 alias nv=nvim
 
-alias obsidian='cd "$GDRIVEDIR/O meu disco/DRIVE/GAB"'
-alias programming='cd "$GDRIVEDIR/O meu disco/DRIVE/GAB/Estudos-Trabalhos/PROGRAMAÇÃO"'
-alias studies='cd "$GDRIVEDIR/O meu disco/DRIVE/GAB/Estudos-Trabalhos/PROGRAMAÇÃO/programming-studies"'
+alias obsidian='cd "$GDRIVEDIR/O meu disco/DRIVE/GAB" && echo $(basename "$PWD")'
+alias programming='cd "$GDRIVEDIR/O meu disco/DRIVE/GAB/Estudos-Trabalhos/PROGRAMAÇÃO" && echo $(basename "$PWD")'
+alias studies='cd "$GDRIVEDIR/O meu disco/DRIVE/GAB/Estudos-Trabalhos/PROGRAMAÇÃO/programming-studies" && echo $(basename "$PWD")'
 
 
 ### Don't modify below
