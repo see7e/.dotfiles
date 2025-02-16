@@ -12,6 +12,7 @@ fi
 # PATHS
 export PATH="$HOME/scripts:$PATH"
 export TMUX_CONF=~/.config/tmux/tmux.conf
+export PATH="$PATH:/opt/nvim-linux64/bin"
 # Go Path
 # export GOPATH=$HOME/go
 # export PATH=$GOPATH/bin:$PATH
@@ -23,12 +24,9 @@ if [ ! -d "$GDRIVEDIR" ]; then
   echo "$GDRIVEDIR does not exist, creating folder"
   sudo mkdir /mnt/g
 fi
-if mountpoint -q $GDRIVEDIR; then
-  echo "$GDRIVEDIR is mounted"
-else
-  sudo mount -t drvfs G: $GDRIVEDIR
+if ! mountpoint -q "$GDRIVEDIR"; then
+  sudo mount -t drvfs G: "$GDRIVEDIR"
 fi
-
 
 # ZSH Plugin Manager
 # Set the directory we want to store zinit and plugins

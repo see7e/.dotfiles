@@ -42,8 +42,21 @@ wget -P ~/.local/share/fonts https://github.com/ryanoasis/nerd-fonts/releases/do
 # fi
 
 # Install apps
+## Latest NeoVim
+curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage ~/pkg/nvim.appimage
+chmod u+x ~/pkg/nvim.appimage
+~/pkg/nvim.appimage --appimage-extract
+~/pkg/squashfs-root/AppRun --version
+
+# Optional: exposing nvim globally.
+sudo mv ~/pkg/squashfs-root /
+sudo ln -s /squashfs-root/AppRun /usr/bin/nvim
+
+## NVChad (dont forget to open nvim to finish the configuration)
+git clone https://github.com/NvChad/starter ~/.config/nvim
+
+## Other apps
 sudo apt install fzf fd-find bat eza tmux -y
-git clone https://github.com/NVChad/NVChad ~/.config/nvim --depth=1
 # sudo apt install yazi -y
 
 # Configure Tmux
@@ -51,7 +64,7 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 
 # Copy the files (replace later with Stow)
-rm ~/.zshrc
+mv ~/.zshrc ~/.zshrc.bak
 cp $RESOURCE_PATH/.zshrc ~/.zshrc
 cp $RESOURCE_PATH/.config ~/.config
 
