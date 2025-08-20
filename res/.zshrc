@@ -17,6 +17,11 @@ export PATH="$PATH:/opt/nvim-linux64/bin"
 # export GOPATH=$HOME/go
 # export PATH=$GOPATH/bin:$PATH
 # export PATH=$PATH:$(go env GOPATH)/bin
+# Terraform
+export PATH="$HOME/.tfenv/bin:$PATH"
+# if in WSL
+# export PATH=$PATH:$HOME/.tfenv/bin
+
 
 # GDrive
 GDRIVEDIR=/mnt/g

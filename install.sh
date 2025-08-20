@@ -58,6 +58,19 @@ git clone https://github.com/NvChad/starter ~/.config/nvim
 ## Other apps
 sudo apt install fzf fd-find bat eza tmux -y
 # sudo apt install yazi -y
+## tfenv
+git clone --depth=1 https://github.com/tfutils/tfenv.git ~/.tfenv
+## AWS CLI
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "$PACKAGE_PATH/awscliv2.zip"
+unzip $PACKAGE_PATH/awscliv2.zip
+sudo .$PACKAGE_PATH/aws/install
+aws --version
+
+## AWS SAM CLI
+curl -L https://github.com/aws/aws-sam-cli/releases/latest/download/aws-sam-cli-linux-x86_64.zip -o $PACKAGE_PATH/aws-sam-cli-linux-x86_64.zip
+unzip $PACKAGE_PATH/aws-sam-cli-linux-x86_64.zip -d $PACKAGE_PATH/sam-installation
+sudo .$PACKAGE_PATH/sam-installation/install
+sam --version
 
 # Configure Tmux
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
